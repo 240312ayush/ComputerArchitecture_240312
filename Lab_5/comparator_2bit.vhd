@@ -13,21 +13,16 @@ entity COMPARATOR_2BIT is
 end entity COMPARATOR_2BIT;
 
 architecture Behavioral of COMPARATOR_2BIT is
-    signal x1, x0 : std_logic;  -- XNOR outputs (bit-wise equality)
 begin
-    -- XNOR gates for bit-level equality detection
-    x1 <= A(1) XNOR B(1);
-    x0 <= A(0) XNOR B(0);
+    process(A, B)
+    begin
+        -- EQ = (A1 ⊕ B1)' · (A0 ⊕ B0)'
+        EQ <= not (A(1) xor B(1)) and not (A(0) xor B(0));
 
-    -- EQ: all bit pairs must be equal
-    EQ <= x1 AND x0;
+        -- GT = A1·B1' + (A1 ⊕ B1)' · A0·B0'
+        GT <= (A(1) and not B(1)) or (not (A(1) xor B(1)) and A(0) and not B(0));
 
-    -- GT: A > B
-    GT <= (A(1) AND (NOT B(1)))
-       OR (x1 AND A(0) AND (NOT B(0)));
-
-    -- LT: A < B
-    LT <= ((NOT A(1)) AND B(1))
-       OR (x1 AND (NOT A(0)) AND B(0));
-
+        -- LT = A1'·B1 + (A1 ⊕ B1)' · A0'·B0
+        LT <= (not A(1) and B(1)) or (not (A(1) xor B(1)) and not A(0) and B(0));
+    end process;
 end architecture Behavioral;
