@@ -1,0 +1,13 @@
+v 4
+file . "gray_tb.vhd" "0557fde2189875d9c27ca2cdb860eb8a33bcc1cb" "20260630081836.539":
+  entity gray_tb at 1( 0) + 0 on 17;
+  architecture simulation of gray_tb at 7( 83) + 0 on 18;
+file . "bin_to_gray.vhd" "58131053f51ad635896eeea5bdef8e141efc0bab" "20260630081836.538":
+  entity bin_to_gray at 1( 0) + 0 on 15;
+  architecture dataflow of bin_to_gray at 11( 249) + 0 on 16;
+file . "bcd_to_xs3.vhd" "6a075a2e4caaa2023f605b49bf814df7c06d71e4" "20260630081830.534":
+  entity bcd_to_xs3 at 1( 0) + 0 on 11;
+  architecture behavioral of bcd_to_xs3 at 12( 267) + 0 on 12;
+file . "bcd_xs3_tb.vhd" "ad019f31bf1015e9249261161a82e30339204b02" "20260630081830.534":
+  entity bcd_xs3_tb at 1( 0) + 0 on 13;
+  architecture simulation of bcd_xs3_tb at 7( 89) + 0 on 14;
